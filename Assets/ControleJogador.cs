@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; //Toda vez que o cÃ³digo for mexer na UI
 
 public class ControleJogador : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class ControleJogador : MonoBehaviour
     public float velocidadeGira = 5;
 
     public bool estaNoChao;
+
+    [Header("ForÃ§a")]
+    public Image barra;
+    bool segurando;
+    public float encheBarra = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,10 +27,18 @@ public class ControleJogador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Pegar um eixo que para a esquerda é -1, para direita 1
+
+        //Encher a barra se tiver segurando o obj
+        if(segurando){
+            //Time.deltaTime = 1/FPS exemplo: 1/60= 0.016; 
+            barra.fillAmount += encheBarra * Time.deltaTime;
+        }
+
+
+        //Pegar um eixo que para a esquerda ï¿½ -1, para direita 1
         float movimentoX = Input.GetAxis("Horizontal");
         float movimentoY = Input.GetAxis("Vertical");
-        //Mostra uma mensagem só pra gente, no Console.
+        //Mostra uma mensagem sï¿½ pra gente, no Console.
         Debug.Log(movimentoX);
 
         //Movimento normal considerando X e Z da Unity
@@ -75,8 +89,11 @@ public class ControleJogador : MonoBehaviour
         {
             other.transform.parent = transform;
             other.GetComponent<Rigidbody>().isKinematic = true;
+            segurando = true;
         }else
         {
+            barra.fillAmount = 0; 
+            segurando = false;
             other.transform.parent = null;
             other.GetComponent<Rigidbody>().isKinematic = false;
         }
