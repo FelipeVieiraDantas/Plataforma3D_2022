@@ -16,6 +16,7 @@ public class ControleJogador : MonoBehaviour
     public Image barra;
     bool segurando;
     public float encheBarra = 0.1f;
+    public float forcaMaxima = 300;
 
     // Start is called before the first frame update
     void Start()
@@ -92,10 +93,19 @@ public class ControleJogador : MonoBehaviour
             segurando = true;
         }else
         {
+            other.GetComponent<Rigidbody>().isKinematic = false;
+            if (segurando)
+            {
+                Vector3 direcao = other.transform.position - transform.position;
+                direcao.Normalize(); //Deixa o mínimo -1 e o máximo 1
+                direcao.y = 0.2f;
+                other.GetComponent<Rigidbody>().AddForce(direcao * forcaMaxima * barra.fillAmount);
+            }
+
             barra.fillAmount = 0; 
             segurando = false;
             other.transform.parent = null;
-            other.GetComponent<Rigidbody>().isKinematic = false;
+            
         }
     }
 }
