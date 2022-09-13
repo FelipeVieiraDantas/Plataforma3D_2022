@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovimentoBayonetta : MonoBehaviour
 {
     public float velocidade = 10;
+    public float velocidadeRotacao = 70;
     Rigidbody fisica;
 
     Animator anim;
@@ -41,16 +42,26 @@ public class MovimentoBayonetta : MonoBehaviour
         }
 
 
+        //Normalmente, o GetAxis tem uma aceleração.
+        //O Raw não tem. Vai de 0 para 1 direto.
+        float movimentoX = Input.GetAxisRaw("Horizontal");
+        float movimentoZ = Input.GetAxisRaw("Vertical");
 
-        float movimentoX = Input.GetAxis("Horizontal");
-        float movimentoZ = Input.GetAxis("Vertical");
         Vector3 movimento = new Vector3(movimentoX, 0, movimentoZ);
         //Transformo uma direção como se fosse filha da camera
         //para o mundo da unity
         movimento = 
             Camera.main.transform.TransformDirection(movimento);
         movimento.y = 0;
-        transform.rotation = Quaternion.LookRotation(movimento);
+
+        if (movimento != Vector3.zero)
+        {
+            Quaternion rotacaoDestino = Quaternion.LookRotation(movimento);
+            transform.rotation =
+                Quaternion.Lerp(transform.rotation,
+                rotacaoDestino, velocidadeRotacao * Time.deltaTime);
+        }
+
         fisica.velocity = movimento * velocidade;
 
         //Ligar ou desligar animação de andando
