@@ -10,9 +10,29 @@ public class InimigoControle : MonoBehaviour
     public int pontoAtual;
     public float distanceAceitavel = 1;
 
+    public float velocidadePadrao = 10;
+
     // Update is called once per frame
     void Update()
     {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position,
+            Vector3.down, out hit, 5))
+        {
+            if (hit.collider.CompareTag("Areia"))
+            {
+                agente.speed = velocidadePadrao / 2;
+            }
+            else
+            {
+                agente.speed = velocidadePadrao;
+            }
+        }
+
+
+
+
+
         // Pega a distância entre dois pontos
         float distancia =
             Vector3.Distance(transform.position,
