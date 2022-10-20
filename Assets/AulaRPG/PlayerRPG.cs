@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class PlayerRPG : MonoBehaviour
 {
     public Transform alvo;
+    public LayerMask layerDoChao;
 
     NavMeshAgent agente;
     // Start is called before the first frame update
@@ -26,7 +27,8 @@ public class PlayerRPG : MonoBehaviour
 
             RaycastHit informacoes;
             if (Physics.Raycast(posicaoNoMundo,
-                out informacoes, Mathf.Infinity))
+                out informacoes, Mathf.Infinity,
+                layerDoChao))
             {
                 Debug.Log("Bati em " + informacoes.collider);
                 agente.SetDestination(informacoes.point);
