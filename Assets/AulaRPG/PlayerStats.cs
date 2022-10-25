@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
+    [Header("Referência")]
+    public Image barraDeEstamina;
+
+    [Header("Stats")]
     public int hp = 5;
     public int forca = 1; //Machado fica mais forte
     public int destreza = 1; //Revolver fica mais forte
@@ -26,6 +31,7 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        barraDeEstamina.fillAmount += 
+            estamina * Time.deltaTime;
     }
 }
