@@ -24,8 +24,10 @@ public class PlayerAttack : MonoBehaviour
                 if(stats.barraDeEstamina.fillAmount == 1)
                 {
                     stats.barraDeEstamina.fillAmount = 0;
-                    atacando.GetComponent<InimigoRPG>().
-                        TomarDano();
+                    stats.GanharXP(
+                        atacando.GetComponent<InimigoRPG>().
+                            TomarDano(stats.forca)
+                        );
                 }
             }
         }

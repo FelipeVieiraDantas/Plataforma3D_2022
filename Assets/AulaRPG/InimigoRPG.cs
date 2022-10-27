@@ -5,18 +5,22 @@ using UnityEngine.UI;
 
 public class InimigoRPG : MonoBehaviour
 {
+    public int xp = 50;
+
     public Image barradeHP;
     public int hpMaximo = 10;
     public int hpAtual = 10;
-    public void TomarDano()
+    public int TomarDano(int quantoDeDano)
     {
-        hpAtual -= 1;
+        hpAtual -= quantoDeDano;
         if(hpAtual <= 0)
         {
             Destroy(gameObject);
+            return xp;
         }
         barradeHP.fillAmount = 
             (float)hpAtual / (float)hpMaximo;
+        return 0;
     }
 
     // Start is called before the first frame update
