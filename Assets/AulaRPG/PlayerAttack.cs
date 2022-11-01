@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    Animator anim;
+
     public Transform atacando;
     PlayerStats stats;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         stats = GetComponent<PlayerStats>();
     }
 
@@ -23,13 +26,23 @@ public class PlayerAttack : MonoBehaviour
             {
                 if(stats.barraDeEstamina.fillAmount == 1)
                 {
-                    stats.barraDeEstamina.fillAmount = 0;
-                    stats.GanharXP(
-                        atacando.GetComponent<InimigoRPG>().
-                            TomarDano(stats.forca)
-                        );
+                    anim.SetTrigger("Ataque");
                 }
             }
         }
+        else
+        {
+            anim.ResetTrigger("Ataque");
+        }
     }
+
+    public void Acertou()
+    {
+        stats.barraDeEstamina.fillAmount = 0;
+        stats.GanharXP(
+            atacando.GetComponent<InimigoRPG>().
+                TomarDano(stats.forca)
+            );
+    }
+
 }

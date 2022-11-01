@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class PlayerRPG : MonoBehaviour
 {
+    Animator anim;
     PlayerAttack attack;
 
     public Transform alvo;
@@ -14,6 +15,7 @@ public class PlayerRPG : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         attack = GetComponent<PlayerAttack>();
         agente = GetComponent<NavMeshAgent>();
     }
@@ -21,6 +23,17 @@ public class PlayerRPG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Vector3.Distance(transform.position,
+            alvo.position) > 2)
+        {
+            anim.SetBool("Andando", true);
+        }
+        else
+        {
+            anim.SetBool("Andando", false);
+        }
+
+
         if (Input.GetMouseButtonDown(0))
         {
             Ray posicaoNoMundo =
