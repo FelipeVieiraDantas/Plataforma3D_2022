@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AnimatorCajado
+  m_Controller: {fileID: 9100000, guid: 27ce1e8c939ec524d999eafa82252240, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: af038cc78e35f224c803022e05633cc6, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: b320c1eda692a2649b10f2d8dbb19bb1, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: e79bd062a0e4cad43be16b7cf32da2c8, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 958c581a3ea26cd4ebe3ba7d967fbb5d, type: 3}
