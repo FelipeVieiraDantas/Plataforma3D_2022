@@ -6,6 +6,11 @@ using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
+    [Header("Armas")]
+    public GameObject[] armas;
+    public RuntimeAnimatorController[] animators;
+
+
     [Header("Referência")]
     public Image barraDeEstamina;
     public Image barraDeXP;
@@ -35,6 +40,39 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            foreach(GameObject go in armas)
+            {
+                go.SetActive(false);
+            }
+            armas[0].SetActive(true);
+            GetComponentInChildren<Animator>().
+                runtimeAnimatorController = animators[0];
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            foreach (GameObject go in armas)
+            {
+                go.SetActive(false);
+            }
+            armas[1].SetActive(true);
+            GetComponentInChildren<Animator>().
+                runtimeAnimatorController = animators[1];
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            foreach (GameObject go in armas)
+            {
+                go.SetActive(false);
+            }
+            armas[2].SetActive(true);
+            GetComponentInChildren<Animator>().
+                runtimeAnimatorController = animators[2];
+        }
+
+
+
         barraDeEstamina.fillAmount += 
             estamina * Time.deltaTime;
     }
