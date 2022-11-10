@@ -33,12 +33,16 @@ public class Coletavel : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            other.GetComponent<Inventario>().
+                AdicionarItem(item);
             Destroy(gameObject);
         }
     }
 
     void Update()
     {
+        transform.LookAt(Camera.main.transform);
+
         if (colisor.enabled == true)
         {
             Vector3 vel = fisica.velocity;
