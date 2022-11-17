@@ -35,7 +35,7 @@ public class Inventario : MonoBehaviour
         foreach(GameObject slot in slots)
         {
             if (slot.transform.GetChild(0).gameObject.
-                activeInHierarchy)
+                activeSelf)
             {
                 if (slot.transform.GetChild(0).gameObject.
                     GetComponent<Image>().sprite == qual.imagem)
@@ -54,7 +54,7 @@ public class Inventario : MonoBehaviour
         foreach(GameObject slot in slots)
         {
             if (!slot.transform.GetChild(0).gameObject.
-                activeInHierarchy)
+                activeSelf)
             {
                 slot.transform.GetChild(0).gameObject.SetActive(true);
                 slot.transform.GetChild(0).GetComponent<Image>().
